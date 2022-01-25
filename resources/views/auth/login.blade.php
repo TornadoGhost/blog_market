@@ -8,7 +8,7 @@
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
-
+        <x-auth-session-approval class="mb-4" :status="session('message')" />
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 

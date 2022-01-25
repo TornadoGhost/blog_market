@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/approve', [UserController::class, 'showToApprove'])->middleware(['auth', 'verified'])->name('approve');
+Route::post('/approve', [UserController::class, 'storeApprove'])->middleware(['auth', 'verified'])->name('approve.store');
 
 require __DIR__.'/auth.php';
