@@ -148,40 +148,57 @@
                                                     </thead>
 
                                                     <tbody>
-
-                                                    @foreach($usersToApprove as $user)
-                                                        @if($user->email_verified_at)
-                                                            <form action="{{ route('approve.store') }}" method="post">
-                                                                @csrf
-                                                                <tr data-entry-id="1" role="row" class="odd">
-                                                                    <td style="width: 40em;">
-                                                                        {{ $user->id }}
-                                                                        <input type="hidden" name="id" value="{{ $user->id }}">
-                                                                    </td>
-                                                                    <td style="width: 70em;">
-                                                                        {{ $user->name }}
-                                                                    </td>
-                                                                    <td style="width: 50em;">
-                                                                        {{ $user->email }}
-                                                                    </td>
-                                                                    <td style="width: 400px;">
-                                                                        {{ $user->email_verified_at }}
-                                                                    </td>
-                                                                    <td style="width: 10em;">
-                                                                        <label for="is_author"> is_author</label>
-                                                                        <input type="checkbox" name="is_author" id="is_author">
-                                                                    </td>
-                                                                    @if($user->is_admin)
-                                                                        <td>
-                                                                            <span class="badge badge-info">Admin</span>
+                                                    <tr data-entry-id="1" role="row" class="odd">
+                                                        @foreach($usersToApprove as $user)
+                                                            @if(!$user->declined)
+                                                                @if($user->email_verified_at)
+                                                                    <form action="{{ route('approve.store') }}"
+                                                                          method="post">
+                                                                        @csrf
+                                                                        <td style="width: 40em;">
+                                                                            {{ $user->id }}
+                                                                            <input type="hidden" name="id"
+                                                                                   value="{{ $user->id }}">
                                                                         </td>
-                                                                    @endif
-                                                                    <td>
-                                                                        <button class="btn btn-xs btn-info">Submit</button>
-                                                                    </td>
-                                                                </tr>
-                                                            </form>
-                                                        @endif
+                                                                        <td style="width: 70em;">
+                                                                            {{ $user->name }}
+                                                                        </td>
+                                                                        <td style="width: 50em;">
+                                                                            {{ $user->email }}
+                                                                        </td>
+                                                                        <td style="width: 400px;">
+                                                                            {{ $user->email_verified_at }}
+                                                                        </td>
+                                                                        <td style="width: 10em;">
+                                                                            <label for="is_author"> is_author</label>
+                                                                            <input type="checkbox" name="is_author"
+                                                                                   id="is_author">
+                                                                        </td>
+                                                                        @if($user->is_admin)
+                                                                            <td>
+                                                                                <span
+                                                                                    class="badge badge-info">Admin</span>
+                                                                            </td>
+                                                                        @endif
+                                                                        <td>
+                                                                            <button class="btn btn-xs btn-info">Submit
+                                                                            </button>
+                                                                        </td>
+                                                                    </form>
+
+                                                                    <form action="{{ route('approve.store') }}"
+                                                                          method="post" >
+                                                                        @csrf
+                                                                        <td>
+                                                                            <input type="hidden" name="declined" value="1">
+                                                                            <input type="hidden" name="id" value="{{ $user->id }}">
+                                                                            <button class="btn btn-xs btn-danger" >Decline
+                                                                            </button>
+                                                                        </td>
+                                                                    </form>
+                                                    </tr>
+                                                    @endif
+                                                    @endif
                                                     @endforeach
                                                     </tbody>
                                                 </table>

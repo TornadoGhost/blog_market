@@ -69,8 +69,13 @@ class UserController extends Controller
                 $u->notify(new UserApprovedNotification());
             }
             return redirect()->back();
+        }else if($request->declined == 1){
+            User::query()->where('id','=', $request->id)->update([
+                'declined' => true,
+            ]);
+            return redirect()->back();
         }
-        return dump($request);
+        return redirect()->route('approve')->with('error', 'Something went wrong');
     }
 
     /**
