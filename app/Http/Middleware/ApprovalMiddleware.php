@@ -21,6 +21,10 @@ class ApprovalMiddleware
             if (auth()->user()->email_verified_at == null){
                 return $next($request);
             }
+            else if(auth()->user()->declined){
+                auth()->logout();
+                return redirect()->route('login')->with('message', 'Your account was declined by administrator.');
+            }
             else if(!auth()->user()->is_author){
                 auth()->logout();
                 return redirect()->route('login')->with('message', 'Your account needs Admin approval!');
