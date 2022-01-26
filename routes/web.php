@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/approve', [UserController::class, 'showToApprove'])->middleware(['auth', 'verified'])->name('approve');
-Route::post('/approve', [UserController::class, 'storeApprove'])->middleware(['auth', 'verified'])->name('approve.store');
+Route::get('/approve', [UserController::class, 'showToApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve');
+Route::post('/approve', [UserController::class, 'storeApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve.store');
 
 require __DIR__.'/auth.php';

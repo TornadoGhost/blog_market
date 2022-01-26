@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\UserApprovedNotification;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -61,6 +63,11 @@ class UserController extends Controller
             User::query()->where('id','=', $request->id)->update([
                 'is_author' => true,
             ]);
+            $user = User::query()->where('id','=', $request->id)->get();
+
+            foreach ($user as $u){
+                $u->notify(new UserApprovedNotification());
+            }
             return redirect()->back();
         }
         return dump($request);

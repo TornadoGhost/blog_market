@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApprovalMiddleware
 {
@@ -17,7 +18,10 @@ class ApprovalMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check()){
-            if(!auth()->user()->is_author && !auth()->user()->is_admin){
+            if (auth()->user()->email_verified_at == null){
+                return $next($request);
+            }
+            else if(!auth()->user()->is_author){
                 auth()->logout();
                 return redirect()->route('login')->with('message', 'Your account needs Admin approval!');
             }
