@@ -20,6 +20,9 @@
                         {{ __('Approve') }}
                     </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                        {{ __('Create post') }}
+                    </x-nav-link>
                 </div>
 
             </div>

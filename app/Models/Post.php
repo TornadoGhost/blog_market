@@ -9,6 +9,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'content',
+        'category_id',
+        'author_id',
+        'description',
+
+    ];
     public function category(){
         return $this->belongsTo(Category::class);
     }
@@ -19,5 +27,13 @@ class Post extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function setTitleAttribute($value){
+        $this->attributes['title'] = ucfirst($value);
+    }
+
+    public function getContentAttribute($value){
+        return ucfirst($value);
     }
 }
