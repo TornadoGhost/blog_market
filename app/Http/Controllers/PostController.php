@@ -19,7 +19,7 @@ class PostController extends Controller
 
     public function index()
     {
-        //
+
     }
 
     public function create()
@@ -36,12 +36,6 @@ class PostController extends Controller
         return redirect()->route('home')->with('success', 'Successfully created!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

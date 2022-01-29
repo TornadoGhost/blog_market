@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,5 +36,9 @@ class Post extends Model
 
     public function getContentAttribute($value){
         return ucfirst($value);
+    }
+
+    public function getData(){
+        return Carbon::parse($this->created_at)->diffForHumans();
     }
 }

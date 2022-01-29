@@ -20,11 +20,11 @@ abstract class CoreRepository
     }
 
     public function getAll(){
-        return $this->model()->all();
+        return $this->start()->all();
     }
 
     public function getById($id){
-        return $this->model()->find($id);
+        return $this->start()->find($id);
     }
 }
 
