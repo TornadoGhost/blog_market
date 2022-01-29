@@ -33,7 +33,7 @@ class PostController extends Controller
     {
         $this->postService->savePostData($request);
 
-        return redirect()->route('home')->with('success', 'Successfully created!');
+        return redirect()->back()->with('success', 'Successfully created! It will be published after approving by admin.');
     }
 
     public function show($id)
