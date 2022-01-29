@@ -22,7 +22,10 @@ class PostApproveController extends Controller
         return redirect()->back()->with('success', 'Post was approved!');
     }
 
-    public function drop(){
+    public function drop(Request $request){
+        Post::query()->find($request->id)->tags()->detach();
+        Post::query()->where('id', '=', $request->id)->delete();
 
+        return redirect()->back()->with('success', 'Post was deleted!');
     }
 }
