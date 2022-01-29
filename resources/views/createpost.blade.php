@@ -57,7 +57,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <input type="hidden" value="{{ auth()->user()->id }}" name="author_id">
+                            <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
                         </div>
                         <button class="btn btn-primary">Submit</button>
                     </form>

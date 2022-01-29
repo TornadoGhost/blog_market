@@ -28,7 +28,7 @@ class PostStoreRequest extends FormRequest
             'content' => 'required|min:10',
             'tags' => 'required',
             'category_id' => 'required|integer',
-            'author_id' => 'required|integer',
+            'user_id' => 'required|integer',
             'description' => 'required|string',
         ];
     }

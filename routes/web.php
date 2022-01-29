@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostApproveController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/approve', [UserController::class, 'showToApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve');
-Route::post('/dashboard/approve', [UserController::class, 'storeApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve.store');
+Route::get('/dashboard/approve/authors', [UserController::class, 'showToApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve');
+Route::post('/dashboard/approve/authors', [UserController::class, 'storeApprove'])->middleware(['auth', 'verified', 'admin'])->name('approve.store');
+
+Route::get('/dashboard/approve/posts', [PostApproveController::class, 'showToApprove'])->middleware(['auth', 'verified', 'admin'])->name('post.approve');
+Route::post('/dashboard/approve/posts', [PostApproveController::class, 'storeApprove'])->middleware(['auth', 'verified', 'admin'])->name('postApprove.store');
+Route::delete('/dashboard/approve/posts', [PostApproveController::class, 'drop'])->middleware(['auth', 'verified', 'admin'])->name('postApprove.drop');
 
 Route::resource('/dashboard/posts', PostController::class);
 
