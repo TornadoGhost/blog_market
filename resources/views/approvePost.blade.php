@@ -57,6 +57,7 @@
                                 @csrf
                                 <td>
                                     <input type="hidden" name="id" value="{{ $post->id }}">
+                                    <input type="hidden" name="author_id" value="{{ $post->user_id }}">
                                     <button class="btn btn-xs btn-danger">Decline</button>
                                 </td>
                             </form>
