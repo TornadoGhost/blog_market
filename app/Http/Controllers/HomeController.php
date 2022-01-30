@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Services\Interfaces\PostServiceInterface;
 use Illuminate\Http\Request;
 
@@ -18,5 +19,11 @@ class HomeController extends Controller
         $posts = $this->postService->getAllPosts();
 
         return view('homepage', compact('posts'));
+    }
+
+    public function show($id){
+        $post = Post::find($id);
+
+        return view('showpost', compact('post'));
     }
 }

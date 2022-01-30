@@ -33,4 +33,8 @@ class PostService implements PostServiceInterface
         return $this->postRepository->getAll();
     }
 
+    public function getPost($id){
+        return $this->postRepository->getById($id);
+    }
+
 }
