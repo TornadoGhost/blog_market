@@ -70,13 +70,17 @@
         <div class="container">
             <a href="{{ route('home') }}" class="navbar-brand d-flex flex-grow-1 align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                <strong>Albums</strong>
+                <strong>Main page</strong>
             </a>
             <div class="p-2">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class=" text-decoration-none text-light">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class=" text-decoration-none text-light">{{ auth()->user()->name }} | Dashboard</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="btn btn-link text-decoration-none text-light">Logout</button>
+                            </form>
                         @else
                             <a href="{{ route('login') }}" class=" text-decoration-none text-light">Login</a>
 
@@ -96,21 +100,13 @@
 
 <main>
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Album example</h1>
-                <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-                <p>
-                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
     <div class="album py-5 bg-light">
         <div class="container">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             @foreach($posts as $post)
                 @if($post->approved)
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -123,7 +119,9 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-decoration-none text-secondary" href="{{ route('home.post', ['id'=> $post->id]) }}">View</a></button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    @if(Auth::check() && auth()->user()->is_admin)
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-decoration-none text-secondary" href="{{ route('home.post.edit', ['id'=> $post->id]) }}">Edit</a></button>
+                                    @endif
                                 </div>
                                 <small class="text-muted">{{ $post->getData() }}</small>
                             </div>

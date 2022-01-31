@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/post/{id}', [HomeController::class, 'show'])->name('home.post');
 
+Route::get('/post/edit/{id}', [HomeController::class, 'edit'])->name('home.post.edit');
+Route::put('/post/edit/{id}', [HomeController::class, 'update'])->name('home.post.update');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
