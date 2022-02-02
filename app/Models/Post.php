@@ -30,6 +30,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function undercategories(){
+        return $this->belongsToMany(UnderCategory::class);
+    }
+
     public function setTitleAttribute($value){
         $this->attributes['title'] = ucfirst($value);
     }
