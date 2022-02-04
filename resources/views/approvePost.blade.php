@@ -18,22 +18,27 @@
                         @foreach($posts as $post)
                             @if(!$post->approved)
                         <article class="blog-post">
-                            <h3 class="blog-post-title">Author:</h3>
+                            <h3 class="blog-post-title font-weight-bold">Author:</h3>
                             <p>{{ $post->user->name }}</p>
                             <hr>
-                            <h4 class="blog-post-title">Title:</h4>
+                            <h4 class="blog-post-title font-weight-bold">Title:</h4>
                             <p>{{ $post->title }}</p>
                             <hr>
-                            <h4 class="blog-post-title">Description:</h4>
+                            <h4 class="blog-post-title font-weight-bold">Description:</h4>
                             <p>{{ $post->description }}</p>
                             <hr>
-                            <h4 class="blog-post-title">Content:</h4>
+                            <h4 class="blog-post-title font-weight-bold">Content:</h4>
                             <p>{{ $post->content }}</p>
                             <hr>
-                            <h4 class="blog-post-title">Category:</h4>
+                            <h4 class="blog-post-title font-weight-bold">Category:</h4>
                             <p>{{ $post->category->title }}</p>
                             <hr>
-                            <h4 class="blog-post-title">Tags:</h4>
+                            <h4 class="blog-post-title font-weight-bold">Under categories:</h4>
+                            <ul>
+                                @foreach($post->undercategories as $uc)<li>{{ $uc->title }}</li>@endforeach
+                            </ul>
+                            <hr>
+                            <h4 class="blog-post-title font-weight-bold">Tags:</h4>
                             <ul>
                                 @foreach($post->tags as $t)<li>{{ $t->title }}</li>@endforeach
                             </ul>

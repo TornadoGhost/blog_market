@@ -105,6 +105,7 @@
     <div class="container">
         <h1 class="text-center">{{ $post->title }}</h1>
         <h2>{{ $post->category->title }}</h2>
+        <p>@foreach($post->undercategories as $uc) {{ $uc->title }}@endforeach</p>
         <p>@foreach($post->tags as $t) {{ $t->title }}@endforeach</p>
         <p>{{ $post->content }}</p>
         <small>{{ $post->created_at }}</small>
