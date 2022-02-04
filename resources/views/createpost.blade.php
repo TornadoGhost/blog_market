@@ -54,7 +54,17 @@
                             </div>
 
                             <div class="mb-3 col-3" >
-                                <label for="tag-select">Select Tags</label>
+                                <label for="undercategory_id">Select under categories:</label>
+                                <select class="form-select" name="undercategories[]" multiple id="undercategory_id">
+                                    @foreach($underCategories as $underCategory)
+                                        <option
+                                            value="{{ $underCategory->id }}" >{{ $underCategory->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-3" >
+                                <label for="tag-select">Select Tags: </label>
                                 <select class="form-select" name="tags[]" multiple id="tag-select">
                                     @foreach($tags as $tag)
                                         <option

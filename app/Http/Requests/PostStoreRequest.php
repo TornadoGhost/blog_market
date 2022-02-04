@@ -30,6 +30,7 @@ class PostStoreRequest extends FormRequest
             'category_id' => 'required|integer',
             'user_id' => 'required|integer',
             'description' => 'required|string',
+            'undercategories' => 'required'
         ];
     }
 }

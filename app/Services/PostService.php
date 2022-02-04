@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\UnderCategory;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use App\Services\Interfaces\PostServiceInterface;
 use Carbon\Carbon;
@@ -27,6 +28,10 @@ class PostService implements PostServiceInterface
 
     public function getCategories(){
         return Category::all();
+    }
+
+    public function getUnderCategories(){
+        return UnderCategory::all();
     }
 
     public function getAllPosts(){

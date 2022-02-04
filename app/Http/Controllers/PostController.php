@@ -26,7 +26,8 @@ class PostController extends Controller
     {
         $tags = $this->postService->getTags();
         $categories = $this->postService->getCategories();
-        return view('createpost', compact('tags', 'categories'));
+        $underCategories = $this->postService->getUnderCategories();
+        return view('createpost', compact('tags', 'categories', 'underCategories'));
     }
 
     public function store(PostStoreRequest $request)
