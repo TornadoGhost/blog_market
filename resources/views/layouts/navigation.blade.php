@@ -16,18 +16,17 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if(auth()->user()->is_admin)
-                    <x-nav-link :href="route('approve')" :active="request()->routeIs('approve')">
-                        {{ __('Approve Author') }}
-                    </x-nav-link>
-                    @endif
-                    @if(auth()->user()->is_admin)
+                        <x-nav-link :href="route('approve')" :active="request()->routeIs('approve')">
+                            {{ __('Approve Author') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('post.approve')" :active="request()->routeIs('post.approve')">
                             {{ __('Approve Post') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->user()->is_admin)
                         <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                             {{ __('Category Tools') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                            {{ __('Add Tags') }}
                         </x-nav-link>
                     @endif
                     <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
