@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostApproveController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnderCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,10 +45,12 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/category')-
     Route::get('/all', [CategoryController::class, 'index'])->name('category.all');
     Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/create', [CategoryController::class, 'store'])->name('category.store');
-
 });
 
-
+Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/tags')->group(function (){
+    Route::get('/', [TagController::class, 'create'])->name('tags.create');
+    Route::post('/', [TagController::class, 'store'])->name('tags.store');
+});
 
 
 Route::resource('/dashboard/posts', PostController::class);

@@ -25,7 +25,7 @@
                         <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
                             {{ __('Category Tools') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                        <x-nav-link :href="route('tags.create')" :active="request()->routeIs('tags.create')">
                             {{ __('Add Tags') }}
                         </x-nav-link>
                     @endif
