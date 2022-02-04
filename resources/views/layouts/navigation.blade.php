@@ -25,6 +25,11 @@
                             {{ __('Approve Post') }}
                         </x-nav-link>
                     @endif
+                    @if(auth()->user()->is_admin)
+                        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                            {{ __('Category Tools') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                         {{ __('Create post') }}
                     </x-nav-link>
