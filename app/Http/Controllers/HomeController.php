@@ -24,9 +24,10 @@ class HomeController extends Controller
         return view('homepage', compact('posts'));
     }
 
-    public function show($id){
-        $post = Post::find($id);
-
+    public function show($category, $title){
+        dump($category, $title);
+        $post = Post::query()->where('title', '=', $title)->get();
+        dd($post);
         return view('showpost', compact('post'));
     }
 

@@ -119,7 +119,7 @@
                             <p class="card-text">{{ $post->description }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-decoration-none text-secondary" href="{{ route('home.post', ['id'=> $post->id]) }}">View</a></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-decoration-none text-secondary" href="{{ route('home.post', ['category' => $post->category->title, 'title' => $post->title]) }}">View</a></button>
                                     @if(Auth::check() && auth()->user()->is_admin)
                                         <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-decoration-none text-secondary" href="{{ route('home.post.edit', ['id'=> $post->id]) }}">Edit</a></button>
                                     @endif
