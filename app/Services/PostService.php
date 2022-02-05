@@ -19,7 +19,7 @@ class PostService implements PostServiceInterface
     }
 
     public function savePostData($request){
-        $this->postRepository->create($request);
+        return $this->postRepository->create($request);
     }
 
     public function getTags(){

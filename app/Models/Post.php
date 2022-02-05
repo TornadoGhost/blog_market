@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -16,7 +17,7 @@ class Post extends Model
         'category_id',
         'user_id',
         'description',
-
+        'slug'
     ];
     public function category(){
         return $this->belongsTo(Category::class);

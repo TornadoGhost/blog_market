@@ -6,6 +6,7 @@ use App\Http\Requests\PostStoreRequest;
 use App\Models\Tag;
 use App\Services\Interfaces\PostServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class PostController extends Controller
 {
