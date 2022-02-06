@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08fa3a944299ef3ed30fb2c7e87d98c1",
+    "content-hash": "1605025f3015c545bf22495e9b327996",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1805,6 +1805,55 @@
                 }
             ],
             "time": "2021-11-21T11:48:40+00:00"
+        },
+        {
+            "name": "lithiumdev/laravel-tagcloud",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LithiumHosting/laravel-tagcloud.git",
+                "reference": "4d9ecf543ca7a5a9be3e752841d24eeadbb3eab1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LithiumHosting/laravel-tagcloud/zipball/4d9ecf543ca7a5a9be3e752841d24eeadbb3eab1",
+                "reference": "4d9ecf543ca7a5a9be3e752841d24eeadbb3eab1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=6.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LithiumDev\\TagCloud": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Troy Siedsma",
+                    "email": "tsiedsma@lithiumhosting.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package for generating tag clouds.",
+            "keywords": [
+                "laravel",
+                "laravel tag cloud",
+                "laravel tagcloud",
+                "tag cloud",
+                "tagcloud"
+            ],
+            "support": {
+                "issues": "https://github.com/LithiumHosting/laravel-tagcloud/issues",
+                "source": "https://github.com/LithiumHosting/laravel-tagcloud/tree/v1.1.0"
+            },
+            "time": "2020-08-19T03:55:43+00:00"
         },
         {
             "name": "monolog/monolog",

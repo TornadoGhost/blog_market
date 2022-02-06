@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
+use Illuminate\Support\Str;
 
 class CategoryRepository extends CoreRepository implements CategoryRepositoryInterface
 {
@@ -21,6 +22,9 @@ class CategoryRepository extends CoreRepository implements CategoryRepositoryInt
     }
 
     public function create($request){
-        return $this->start()->create($request->all());
+        return $this->start()->create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title, '-')
+        ]);
     }
 }

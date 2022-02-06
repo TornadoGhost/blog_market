@@ -31,7 +31,7 @@ class PostStoreRequest extends FormRequest
             'user_id' => 'required|integer',
             'description' => 'required|string',
             'undercategories' => 'required',
-            'slug' => 'string|unique'
+            'slug' => 'string'
         ];
     }
 }

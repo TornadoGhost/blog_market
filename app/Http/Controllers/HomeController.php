@@ -7,7 +7,8 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Services\Interfaces\PostServiceInterface;
-use Illuminate\Http\Request;
+use LithiumDev\TagCloud\TagCloud;
+
 
 class HomeController extends Controller
 {
@@ -21,14 +22,16 @@ class HomeController extends Controller
     public function index(){
         $posts = $this->postService->getAllPosts();
 
-        return view('homepage', compact('posts'));
+        $cloud = new TagCloud();
+        $cloud->addTags(array('tag 1', 'tag 2', 'tag 3'));
+
+
+        return view('homepage', compact('posts', 'cloud'));
     }
 
     public function show($category, $title){
-        dump($category, $title);
-        $post = Post::query()->where('title', '=', $title)->get();
-        dd($post);
-        return view('showpost', compact('post'));
+        $show = $this->postService->showPost($title, $category);
+        return view('showpost', compact('show'));
     }
 
     public function edit($id){

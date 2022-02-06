@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        LithiumDev\TagCloud\ServiceProvider::class,
 
         /*
          * Package Service Providers...

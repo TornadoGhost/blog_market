@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
 use App\Models\UnderCategory;
 use App\Repositories\Interfaces\PostRepositoryInterface;
@@ -40,6 +41,12 @@ class PostService implements PostServiceInterface
 
     public function getPost($id){
         return $this->postRepository->getById($id);
+    }
+
+    public function showPost($slugTitle, $slugCategory){
+        return Post::query()
+            ->where('slug', '=', $slugTitle)
+            ->get();
     }
 
 }
