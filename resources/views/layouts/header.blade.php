@@ -11,21 +11,20 @@
                             </li>
                         @endforeach
                     </nav>
-                    <h5 class="text-white">Categories:</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a class="nav-link" href="">A first item</a></li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                    </ul>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
+                    <h5 class="text-white">Categories:</h5>
+                    <ul>
+                        @foreach($categories as $category)
+                            <li class="list-group-item"><a class="nav-link" href="{{ route('category.show', ['slug' => $category->slug]) }}">{{ $category->title }}</a></li>
+                            <ul>
+                                @foreach($category->underCategories as $uc)
+                                    @if($category->id == $uc->category_id)
+                                        <li class="list-group-item"><a class="nav-link" href="">{{ $uc->title }}</a></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @endforeach
                     </ul>
                 </div>
             </div>
