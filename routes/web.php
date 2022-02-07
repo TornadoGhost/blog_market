@@ -24,6 +24,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 //Route::get('/post/{id}', [HomeController::class, 'show'])->name('home.post');
 Route::get('/{category}/{title}', [HomeController::class, 'show'])->name('home.post');
 
+Route::get('/{tag}', [TagController::class, 'show'])->name('tags.show');
+
+
+
+
 
 Route::get('/post/edit/{id}', [HomeController::class, 'edit'])->name('home.post.edit');
 Route::put('/post/edit/{id}', [HomeController::class, 'update'])->name('home.post.update');

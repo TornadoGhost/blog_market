@@ -22,11 +22,10 @@ class HomeController extends Controller
     public function index(){
         $posts = $this->postService->getAllPosts();
 
-        $cloud = new TagCloud();
-        $cloud->addTags(array('tag 1', 'tag 2', 'tag 3'));
+        $tags = $this->postService->getTags();
 
 
-        return view('homepage', compact('posts', 'cloud'));
+        return view('homepage', compact('posts', 'tags'));
     }
 
     public function show($category, $title){
@@ -49,8 +48,6 @@ class HomeController extends Controller
             'content' => $request->input('content'),
             'category_id' => $request->category_id,
         ]);
-
-
         return redirect()->route('home')->with('success', 'Post id:' . $id . ', was successfully updated!');
     }
 }

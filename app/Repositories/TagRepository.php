@@ -19,6 +19,10 @@ class TagRepository extends CoreRepository implements TagRepositoryInterface
         return $this->start()->orderBy('id', 'desc')->get();
     }
 
+    public function getTag($tag){
+        return $this->start()->where('title', '=', $tag)->get();
+    }
+
     public function create($request){
         return $this->start()->create($request);
     }

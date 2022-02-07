@@ -20,6 +20,10 @@ class TagService implements TagServiceInterface
         return $this->tagRepository->getAll();
     }
 
+    public function getTagByTitle($tag){
+        return $this->tagRepository->getTag($tag);
+    }
+
     public function createTag($request){
         return $this->tagRepository->create($request);
     }
