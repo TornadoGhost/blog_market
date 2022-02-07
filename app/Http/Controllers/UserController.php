@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\AdminBanUserNotification;
 use App\Notifications\UserApprovedNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -17,6 +19,23 @@ class UserController extends Controller
     public function index()
     {
         return view('approve');
+    }
+
+    public function all(){
+        $users = User::withoutBanned()->get();
+        return view('users', compact('users'));
+    }
+
+    public function ban(Request $request){
+        $banComment = $request->comment;
+        $user = User::find($request->id);
+        $user->ban([
+            'comment' => $banComment,
+            'expired_at' => Carbon::parse($request->date),
+        ]);
+        $user->notify(new AdminBanUserNotification($banComment));
+
+        return redirect()->back()->with('success', $user->name . ' is banned');
     }
 
     /**

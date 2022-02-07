@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnderCategoryController;
 use App\Http\Controllers\UserController;
+use Cog\Contracts\Ban\BanService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::put('/post/edit/{id}', [HomeController::class, 'update'])->name('home.pos
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'logs-out-banned-user'])->name('dashboard');
 
 Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard/approve')->group(function (){
     Route::get('/authors', [UserController::class, 'showToApprove'])->name('approve');
@@ -55,6 +56,15 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/admin/categ
 Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/admin/tags')->group(function (){
     Route::get('/create', [TagController::class, 'create'])->name('tags.create');
     Route::post('/create', [TagController::class, 'store'])->name('tags.store');
+});
+
+Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/admin/users')->group(function (){
+    Route::get('/create', [UserController::class, 'all'])->name('users.all');
+    Route::post('/create', [UserController::class, 'ban'])->name('users.ban');
+    Route::post('/update', function (){
+        app(BanService::class)->deleteExpiredBans();
+        return redirect()->route('users.ban');
+    })->name('usersBan.update');
 });
 
 Route::resource('/dashboard/posts', PostController::class);

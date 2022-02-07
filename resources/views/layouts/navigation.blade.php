@@ -28,6 +28,9 @@
                         <x-nav-link :href="route('tags.create')" :active="request()->routeIs('tags.create')">
                             {{ __('Add Tags') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('users.all')" :active="request()->routeIs('users.all')">
+                            {{ __('Users') }}
+                        </x-nav-link>
                     @endif
                     <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                         {{ __('Create post') }}
