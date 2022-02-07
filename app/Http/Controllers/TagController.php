@@ -16,17 +16,12 @@ class TagController extends Controller
         $this->tagService = $tagService;
     }
 
-    public function show($tag){
-/*        $b = Tag::where('title', '=', 'tag 2')->get();
-        foreach ($b as $c){
-            dump($c->posts);
-        }*/
-        $tag = $this->tagService->getTagByTitle($tag);
+    public function show($slug){
+        $tag = $this->tagService->getTagByTitle($slug);
         foreach ($tag as $post){
             $posts = $post->posts->where('approved', '=', 1);
+            return view('tags.postsByTag', compact('posts'));
         }
-
-        return view('tags.postsByTag', compact('posts'));
     }
 
     public function create(){
@@ -35,7 +30,7 @@ class TagController extends Controller
     }
 
     public function store(TagStoreRequest $request){
-        $this->tagService->createTag($request->all());
+        $this->tagService->createTag($request);
         return redirect()->back()->with('success', $request->title . ' was successfully added!');
     }
 }

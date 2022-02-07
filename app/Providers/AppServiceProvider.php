@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('tagsCloud', Tag::all());
+//        View::share('tagsCloud', Tag::all());
+        View::composer('layouts.header', function ($view){
+            $view->with('tagsCloud', Tag::all());
+        });
     }
 }
