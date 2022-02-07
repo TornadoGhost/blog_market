@@ -20,7 +20,7 @@
                             <ul>
                                 @foreach($category->underCategories as $uc)
                                     @if($category->id == $uc->category_id)
-                                        <li class="list-group-item"><a class="nav-link" href="">{{ $uc->title }}</a></li>
+                                        <li class="list-group-item"><a class="nav-link" href="{{ route('undercategory.show', ['category' => $category->slug, 'slug' => $uc->slug]) }}">{{ $uc->title }}</a></li>
                                     @endif
                                 @endforeach
                             </ul>

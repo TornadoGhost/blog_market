@@ -25,7 +25,8 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:categories',
-            'category_id' => 'integer'
+            'category_id' => 'integer',
+            'slug' => 'string'
         ];
     }
 }

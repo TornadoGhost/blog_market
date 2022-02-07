@@ -25,8 +25,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/{category}/{title}', [HomeController::class, 'show'])->name('home.post');
 
 Route::get('/posts/tag/{slug}', [TagController::class, 'show'])->name('tags.show');
-Route::get('/posts/category/{$slug}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/posts/{$category}/under-category/{$slug}', [UnderCategoryController::class, 'show'])->name('undercategory.show');
+Route::get('/posts/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/posts/{category}/{slug}', [UnderCategoryController::class, 'show'])->name('undercategory.show');
 
 
 Route::get('/post/edit/{id}', [HomeController::class, 'edit'])->name('home.post.edit');

@@ -24,4 +24,8 @@ class CategoryService implements CategoryServiceInterface
     public function saveCategory($request){
         return $this->categoryRepository->create($request);
     }
+
+    public function getCategoriesBySlug($slug){
+        return $this->categoryRepository->getCategoriesSlug($slug);
+    }
 }

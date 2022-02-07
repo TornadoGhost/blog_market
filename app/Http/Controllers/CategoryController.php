@@ -6,6 +6,7 @@ use App\Http\Requests\CategoryStoreRequest;
 use App\Models\UnderCategory;
 use App\Services\Interfaces\CategoryServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -36,7 +37,10 @@ class CategoryController extends Controller
     {
 
         if($request->input('category_id')){
-            UnderCategory::query()->create($request->all());
+            UnderCategory::query()->create([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+            ]);
 
             return redirect()->back()->with('success', $request->title . ' successfully added!');
         }
@@ -51,7 +55,13 @@ class CategoryController extends Controller
 
     public function show($slug)
     {
-        dd($slug);
+        $categories = $this->category->getCategoriesBySlug($slug);
+        foreach ($categories as $category){
+            $oldPosts = $category->posts->where('approved', '=', 1);
+            $posts = $oldPosts->reverse();
+
+            return view('categories.show', compact('posts'));
+        }
     }
 
     /**

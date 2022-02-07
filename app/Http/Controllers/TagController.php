@@ -19,7 +19,8 @@ class TagController extends Controller
     public function show($slug){
         $tag = $this->tagService->getTagByTitle($slug);
         foreach ($tag as $post){
-            $posts = $post->posts->where('approved', '=', 1);
+            $oldPosts = $post->posts->where('approved', '=', 1);
+            $posts = $oldPosts->reverse();
             return view('tags.postsByTag', compact('posts'));
         }
     }

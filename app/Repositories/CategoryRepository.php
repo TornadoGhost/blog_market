@@ -27,4 +27,8 @@ class CategoryRepository extends CoreRepository implements CategoryRepositoryInt
             'slug' => Str::slug($request->title, '-')
         ]);
     }
+
+    public function getCategoriesSlug($slug){
+        return $this->start()->where('slug', '=', $slug)->get();
+    }
 }
