@@ -24,7 +24,6 @@ class HomeController extends Controller
 
         $tags = $this->postService->getTags();
 
-
         return view('homepage', compact('posts', 'tags'));
     }
 
