@@ -28,11 +28,13 @@ class PostController extends Controller
         $tags = $this->postService->getTags();
         $categories = $this->postService->getCategories();
         $underCategories = $this->postService->getUnderCategories();
+
         return view('createpost', compact('tags', 'categories', 'underCategories'));
     }
 
     public function store(PostStoreRequest $request)
     {
+
         $this->postService->savePostData($request);
 
         return redirect()->back()->with('success', 'Successfully created! It will be published after approving by admin.');

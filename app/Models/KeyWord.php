@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class KeyWord extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'word',
+    ];
+
+    public function posts(){
+        return $this->belongsToMany(Post::class);
+    }
 }

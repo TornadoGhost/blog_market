@@ -19,6 +19,11 @@ class Post extends Model
         'description',
         'slug'
     ];
+
+    public function keyWords(){
+        return $this->belongsToMany(KeyWord::class);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }

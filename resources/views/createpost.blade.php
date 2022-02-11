@@ -72,12 +72,20 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3 col-3" >
+                                <label for="words"><strong>Add key words for searching:</strong></label>
+                                    <input type="text" name="keyWords[]" multiple id="words" class="mb-1">
+                                    <input type="text" name="keyWords[]" multiple id="words" class="mb-1">
+                                    <input type="text" name="keyWords[]" multiple id="words" class="mb-1">
+                            </div>
                             <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
                         </div>
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+
+

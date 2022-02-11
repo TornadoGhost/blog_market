@@ -42,6 +42,14 @@
                             <ul>
                                 @foreach($post->tags as $t)<li>{{ $t->title }}</li>@endforeach
                             </ul>
+                            <h4 class="blog-post-title font-weight-bold">Tags:</h4>
+                            <ul>
+                                @foreach($post->tags as $t)<li>{{ $t->title }}</li>@endforeach
+                            </ul>
+                            <h4 class="blog-post-title font-weight-bold">Key Words:</h4>
+                            <ul>
+                                @foreach($post->keyWords as $word)<li>{{ $word->word }}</li>@endforeach
+                            </ul>
                             <hr>
                             <h5>Created at:</h5>
                             <p class="blog-post-meta">{{ $post->created_at }}</p>
