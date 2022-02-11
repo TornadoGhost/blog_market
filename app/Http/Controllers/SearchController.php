@@ -34,6 +34,9 @@ class SearchController extends Controller
             ->orWhereHas('undercategories', function (Builder $query) use ($request) {
                 $query->where('title', 'LIKE', "%$request->search_query%");
             })
+            ->orWhereHas('keyWords', function (Builder $query) use ($request) {
+                $query->where('word', 'LIKE', "%$request->search_query%");
+            })
             ->get();
 
         return view('homepage', compact('posts'));

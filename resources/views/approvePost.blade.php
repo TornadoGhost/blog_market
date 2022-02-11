@@ -48,7 +48,7 @@
                             </ul>
                             <h4 class="blog-post-title font-weight-bold">Key Words:</h4>
                             <ul>
-                                @foreach($post->keyWords as $word)<li>{{ $word->word }}</li>@endforeach
+                                @foreach($post->keyWords as $w)<li>{{ $w->word }}</li>@endforeach
                             </ul>
                             <hr>
                             <h5>Created at:</h5>
