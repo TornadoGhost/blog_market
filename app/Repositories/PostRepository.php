@@ -21,7 +21,7 @@ class PostRepository extends CoreRepository implements PostRepositoryInterface
 
     public function getAll()
     {
-        return $this->start()->orderBy('id', 'DESC')->get();
+        return $this->start()->orderBy('id', 'DESC')->paginate(6);
     }
     public function getById($id)
     {
