@@ -46,7 +46,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{ route('home') }}" class="nav-link px-2 text-secondary text-white"><strong>Home</strong></a>
                 </li>
-                {{--                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>--}}
+                @if(Auth::check())
+                <li><a href="{{ route('dashboard') }}" class="nav-link px-2 text-white">Dashboard</a></li>
+                @endif
                 {{--                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>--}}
                 {{--                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--}}
                 {{--                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>--}}

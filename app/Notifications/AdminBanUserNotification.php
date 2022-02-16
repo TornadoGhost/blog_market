@@ -13,10 +13,12 @@ class AdminBanUserNotification extends Notification
     use Queueable;
 
     private $banComment;
+    private $expired;
 
-    public function __construct($banComment)
+    public function __construct($banComment, $expired)
     {
         $this->banComment = $banComment;
+        $this->expired = $expired;
     }
 
     /**
@@ -39,7 +41,8 @@ class AdminBanUserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You were banned. Reason: ' . $this->banComment)
+                    ->line('You were banned. Reason: ' . $this->banComment. '. You will be unbanned at ' . $this->expired)
+                    ->line('You will be unbanned at ' . $this->expired)
                     ->line('Thank you for using our application!');
     }
 

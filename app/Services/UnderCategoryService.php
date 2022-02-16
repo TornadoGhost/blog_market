@@ -18,6 +18,14 @@ class UnderCategoryService implements UnderCategoryServiceInterface
     }
 
     public function getUnderCategoryBySlug($slug){
-        return $this->categoryRepository->getBySlug($slug);
+        return $this->categoryRepository->getUnderCategoryBySlug($slug);
+    }
+
+    public function create($request){
+        return $this->categoryRepository->create($request);
+    }
+
+    public function getAll(){
+        return $this->categoryRepository->getAll();
     }
 }

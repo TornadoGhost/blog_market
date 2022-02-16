@@ -21,17 +21,20 @@ class TagController extends Controller
         foreach ($tag as $post){
             $oldPosts = $post->posts->where('approved', '=', 1);
             $posts = $oldPosts->reverse();
+
             return view('tags.postsByTag', compact('posts'));
         }
     }
 
     public function create(){
         $tags = $this->tagService->getTags();
+
         return view('tags.create', compact('tags'));
     }
 
     public function store(TagStoreRequest $request){
         $this->tagService->createTag($request);
+
         return redirect()->back()->with('success', $request->title . ' was successfully added!');
     }
 }

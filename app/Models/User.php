@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail, BannableContract
 {
-    use HasApiTokens, HasFactory, Notifiable, Bannable;
+    use Notifiable, HasApiTokens, HasFactory, Bannable;
 
 
     public function shouldApplyBannedAtScope()

@@ -29,7 +29,7 @@
                             {{ __('Add Tags') }}
                         </x-nav-link>
                         <x-nav-link :href="route('users.all')" :active="request()->routeIs('users.all')">
-                            {{ __('Users') }}
+                            {{ __('Ban Users') }}
                         </x-nav-link>
                     @endif
                     <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">

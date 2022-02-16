@@ -12,9 +12,9 @@ class PostUnderCategory extends Pivot
     protected $fillable = ['post_id', 'under_category_id'];
 
     public function post(){
-        $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class);
     }
     public function underCategory(){
-        $this->belongsTo(UnderCategory::class);
+        return $this->belongsTo(UnderCategory::class);
     }
 }

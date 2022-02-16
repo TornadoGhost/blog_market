@@ -70,5 +70,5 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('/dashboard/admin/users
     })->name('usersBan.update');
 });
 
-Route::resource('/dashboard/posts', PostController::class);
+Route::resource('/dashboard/posts', PostController::class)->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';

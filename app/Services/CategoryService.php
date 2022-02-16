@@ -28,4 +28,8 @@ class CategoryService implements CategoryServiceInterface
     public function getCategoriesBySlug($slug){
         return $this->categoryRepository->getCategoriesSlug($slug);
     }
+
+    public function getAll(){
+        return $this->categoryRepository->getAll();
+    }
 }

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
@@ -11,6 +12,7 @@ use App\Models\UnderCategory;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use App\Services\Interfaces\PostServiceInterface;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class PostService implements PostServiceInterface
 {
@@ -23,16 +25,8 @@ class PostService implements PostServiceInterface
         return $this->postRepository->create($request);
     }
 
-    public function getTags(){
-        return Tag::all();
-    }
-
-    public function getCategories(){
-        return Category::all();
-    }
-
-    public function getUnderCategories(){
-        return UnderCategory::all();
+    public function getById($id){
+        return $this->postRepository->getById($id);
     }
 
     public function getAllPosts(){
@@ -44,9 +38,35 @@ class PostService implements PostServiceInterface
     }
 
     public function showPost($slugTitle, $slugCategory){
-        return Post::query()
-            ->where('slug', '=', $slugTitle)
-            ->get();
+        return $this->postRepository->showPost($slugTitle, $slugCategory);
     }
 
+    public function postSearching(SearchRequest $request)
+    {
+        return $this->postRepository->postSearching($request);
+    }
+
+    public function postSyncUnderCategory($request, $id){
+        return $this->postRepository->postSyncUnderCategory($request, $id);
+    }
+
+    public function postSyncTags($request, $id){
+        return $this->postRepository->postSyncTags($request, $id);
+    }
+
+    public function postUpdate($request, $id){
+        return $this->postRepository->postUpdate($request, $id);
+    }
+
+    public function showUnapprovedPosts(){
+        return $this->postRepository->showUnapprovedPosts();
+    }
+
+    public function postApprove($request){
+        return $this->postRepository->postApprove($request);
+    }
+
+    public function deleteNotApprovedPost($request){
+        $this->postRepository->deleteNotApprovedPost($request);
+    }
 }

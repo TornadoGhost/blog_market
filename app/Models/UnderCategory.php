@@ -13,6 +13,7 @@ class UnderCategory extends Model
     protected $fillable = [
         'title',
         'category_id',
+        'slug',
     ];
 
     public function category(){

@@ -4,78 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostStoreRequest;
 use App\Models\Tag;
+use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\Interfaces\PostServiceInterface;
+use App\Services\Interfaces\TagServiceInterface;
+use App\Services\Interfaces\UnderCategoryServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class PostController extends Controller
 {
     protected $postService;
+    protected $tagService;
+    protected $categoryService;
+    protected $underCategoryService;
 
-    public function __construct(PostServiceInterface $postService)
+    public function __construct(PostServiceInterface $postService, TagServiceInterface $tagService, CategoryServiceInterface $categoryService, UnderCategoryServiceInterface $underCategoryService)
     {
         $this->postService = $postService;
-    }
-
-
-    public function index()
-    {
-
+        $this->tagService = $tagService;
+        $this->categoryService = $categoryService;
+        $this->underCategoryService = $underCategoryService;
     }
 
     public function create()
     {
-        $tags = $this->postService->getTags();
-        $categories = $this->postService->getCategories();
-        $underCategories = $this->postService->getUnderCategories();
+        $tags = $this->tagService->getTags();
+        $categories = $this->categoryService->getCategories();
+        $underCategories = $this->underCategoryService->getAll();
 
         return view('createpost', compact('tags', 'categories', 'underCategories'));
     }
 
     public function store(PostStoreRequest $request)
     {
-
         $this->postService->savePostData($request);
 
         return redirect()->back()->with('success', 'Successfully created! It will be published after approving by admin.');
-    }
-
-    public function show($id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -16,7 +16,6 @@
                     @endif
                     <div class="col-md-8">
                         @foreach($posts as $post)
-                            @if(!$post->approved)
                         <article class="blog-post">
                             <h3 class="blog-post-title font-weight-bold">Author:</h3>
                             <p>{{ $post->user->name }}</p>
@@ -77,9 +76,9 @@
                             <hr>
                             <hr>
                         </article>
-                            @endif
                         @endforeach
                     </div>
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

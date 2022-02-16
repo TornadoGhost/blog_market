@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Models\UnderCategory;
 use App\Services\Interfaces\CategoryServiceInterface;
+use App\Services\Interfaces\UnderCategoryServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,9 +14,12 @@ class CategoryController extends Controller
 
     protected $category;
 
-    public function __construct(CategoryServiceInterface $category)
+    protected $underCategoryService;
+
+    public function __construct(CategoryServiceInterface $category, UnderCategoryServiceInterface $underCategoryService)
     {
         $this->category = $category;
+        $this->underCategoryService = $underCategoryService;
     }
 
     public function index()
@@ -35,12 +39,8 @@ class CategoryController extends Controller
 
     public function store(CategoryStoreRequest $request)
     {
-
         if($request->input('category_id')){
-            UnderCategory::query()->create([
-                'title' => $request->title,
-                'slug' => Str::slug($request->title),
-            ]);
+            $this->underCategoryService->create($request);
 
             return redirect()->back()->with('success', $request->title . ' successfully added!');
         }
@@ -62,39 +62,5 @@ class CategoryController extends Controller
 
             return view('categories.show', compact('posts'));
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

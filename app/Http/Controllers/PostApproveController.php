@@ -2,37 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KeyWord;
 use App\Models\Post;
 use App\Models\User;
 use App\Notifications\DeletePostNotification;
+use App\Services\Interfaces\PostServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 
 class PostApproveController extends Controller
 {
+    protected $postService;
+    protected $userService;
+
+    public function __construct(PostServiceInterface $postService, UserServiceInterface $userService)
+    {
+        $this->postService = $postService;
+        $this->userService = $userService;
+    }
 
     public function showToApprove(){
-        $posts = Post::all();
+        $posts = $this->postService->showUnapprovedPosts();
 
         return view('approvePost', compact('posts'));
     }
 
     public function storeApprove(Request $request){
-        Post::query()->where('id', '=', $request->id)->update([
-                'approved' => $request->approved,
-            ]);
+        $this->postService->postApprove($request);
 
         return redirect()->back()->with('success', 'Post was approved!');
     }
 
     public function drop(Request $request){
-        Post::query()->find($request->id)->tags()->detach();
-        Post::query()->where('id', '=', $request->id)->delete();
-
-        $author = User::query()->where('id', '=', $request->author_id)->get();
-        foreach ($author as $a){
-            $a->notify(new DeletePostNotification());
-        }
+        $this->userService->getAuthorAndNotify($request);
+        $this->postService->deleteNotApprovedPost($request);
 
         return redirect()->back()->with('success', 'Post was deleted!');
     }
