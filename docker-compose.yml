@@ -2,7 +2,7 @@ version: '3.2'
 services:
     nginx:
         build:
-            context: .
+            context: ./
             dockerfile: docker/nginx.docker
         volumes:
             - ./:/var/www
@@ -12,7 +12,7 @@ services:
             - php-fpm
     php-fpm:
         build:
-            context: .
+            context: ./
             dockerfile: docker/php-fpm.docker
         volumes:
             - ./:/var/www
@@ -21,7 +21,17 @@ services:
         environment:
             - DB_PORT=3306
             - DB_HOST=mysql
-
+    php-cli:
+        build:
+            context: ./
+            dockerfile: docker/php-fpm.docker
+        volumes:
+            - ./:/var/www
+        links:
+            - mysql
+        environment:
+            - DB_PORT=3306
+            - DB_HOST=mysql
     mysql:
         image: mysql:8.0
         volumes:
@@ -33,3 +43,10 @@ services:
             - MYSQL_DATABASE=laravel
         ports:
             - 33033:3306
+    node:
+        build:
+            context: ./
+            dockerfile: docker/node.docker
+        volumes:
+            - ./:/var/www
+        tty: true
