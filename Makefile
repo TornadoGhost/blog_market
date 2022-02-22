@@ -1,25 +1,38 @@
-test:
-init:docker-down-clear docker-pull docker-build composer yarn-install up migration seeder
-restart: down up
-up: docker-up
-down: docker-down
-composer:
-	composer install
+init:app docker-build-up composer-install yarn-install migration seeder
+
+app:env key
+
+env:
+	docker exec blog_market-php-cli-1 cp .env.example .env
+
+key:
+	docker exec blog_market-php-cli-1 php artisan key:generate
+
+docker-build-up:
+	docker-compose up --build -d
+
+composer-install:
+	docker exec blog_market-php-cli-1 composer install
+
 yarn-install:
-	yarn install
+	docker exec blog_market-node-1 yarn install
+
+migration:
+	docker exec blog_market-php-cli-1 php artisan migrate
+
+seeder:
+	docker exec blog_market-php-cli-1 php artisan db:seed
+
+seeder-fresh:
+	docker exec blog_market-php-cli-1 php artisan migrate:fresh --seed
+
+unban:
+	docker exec blog_market-php-cli-1 php artisan ban:delete-expired
+
+docker-down:
+	docker-compose down
+
 docker-up:
 	docker-compose up -d
-docker-down:
-	docker-compose down --remove-orphans
-docker-down-clear:
-	docker-compose down -v --remove-orphans
-docker-compose:
-	docker-compose build --pull
-docker-pull:
-	docker-compose pull
-migration:
-	php artisan migrate
-seeder:
-	php artisan migrate:fresh --seed
-unban:
-	php artisan ban:delete-expired
+
+docker-restart:docker-down docker-up
