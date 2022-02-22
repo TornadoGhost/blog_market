@@ -1,4 +1,4 @@
-init:app docker-build-up composer-install yarn-install migration seeder
+init:docker-build-up composer-install yarn-install app migration seeder
 
 app:env key
 
