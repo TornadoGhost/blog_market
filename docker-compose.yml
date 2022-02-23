@@ -6,7 +6,7 @@ services:
             dockerfile: docker/nginx.docker
         volumes:
             - ./:/var/www
-        ports: ['80:80']
+        ports: ['8080:80']
         links:
             - php-fpm
     php-fpm:
