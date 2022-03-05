@@ -3,31 +3,31 @@ init:docker-build-up composer-install yarn-install app migration seeder
 app:env key
 
 env:
-	docker exec blog_market_php-cli_1 cp .env.example .env
+	docker-compose run --rm php-cli cp .env.example .env
 
 key:
-	docker exec blog_market_php-cli_1 php artisan key:generate
+	docker-compose run --rm php-cli php artisan key:generate
 
 docker-build-up:
 	docker-compose up --build -d
 
 composer-install:
-	docker exec blog_market_php-cli_1 composer install
+	docker-compose run --rm php-cli composer install
 
 yarn-install:
-	docker exec blog_market_node_1 yarn install
+	docker-compose run --rm node yarn install
 
 migration:
-	docker exec blog_market_php-cli_1 php artisan migrate
+	docker-compose run --rm php-cli php artisan migrate
 
 seeder:
-	docker exec blog_market_php-cli_1 php artisan db:seed
+	docker-compose run --rm php-cli php artisan db:seed
 
 seeder-fresh:
-	docker exec blog_market_php-cli_1 php artisan migrate:fresh --seed
+	docker-compose run --rm php-cli php artisan migrate:fresh --seed
 
 unban:
-	docker exec blog_market_php-cli_1 php artisan ban:delete-expired
+	docker-compose run --rm php-cli php artisan ban:delete-expired
 
 docker-down:
 	docker-compose down
