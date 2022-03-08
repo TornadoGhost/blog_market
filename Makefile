@@ -1,4 +1,4 @@
-init:docker-build-up composer-install yarn-install app migration seeder
+init:docker-build-up composer-install yarn-install app docker-permission migration seeder
 
 app:env key
 
@@ -36,3 +36,6 @@ docker-up:
 	docker-compose up -d
 
 docker-restart:docker-down docker-up
+
+docker-permission:
+	docker-compose run --rm php-cli chmod -R 777 storage
