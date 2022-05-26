@@ -21,6 +21,10 @@ class Post extends Model
         'slug'
     ];
 
+    public function comments(){
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+
     public function keyWords(){
         return $this->belongsToMany(KeyWord::class);
     }

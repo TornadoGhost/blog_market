@@ -43,5 +43,5 @@ docker-restart:docker-down docker-up
 docker-permission:
 	docker-compose run --rm php-cli chmod -R 777 storage
 
-docker:
-	docker-compose run --rm php-cli 
+artisan-migrate:
+	docker-compose run --rm php-cli php artisan migrate
