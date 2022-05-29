@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostApproveController;
@@ -27,6 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search/', [SearchController::class, 'index'])->name('search');
 
 Route::get('/{category}/{title}', [HomeController::class, 'show'])->name('home.post');
+Route::post('/{category}/{title}', [CommentController::class, 'store'])->name('comment.add');
 
 Route::get('/posts/tag/{slug}', [TagController::class, 'show'])->name('tags.show');
 Route::get('/posts/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
