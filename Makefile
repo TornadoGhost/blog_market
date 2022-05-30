@@ -1,4 +1,4 @@
-init:docker-build-up composer-install yarn-install app docker-permission migration seeder
+init:docker-build-up composer-install yarn-install dbal app docker-permission migration seeder
 
 app:env key
 
@@ -19,6 +19,9 @@ composer-update:
 
 yarn-install:
 	docker-compose run --rm node yarn install
+
+dbal:
+	docker-compose run --rm composer require doctrine/dbal
 
 migration:
 	docker-compose run --rm php-cli php artisan migrate

@@ -18,7 +18,7 @@
                               action="{{ route('comment.add', ['title' => $s->slug, 'category' => $s->category->slug]) }}">
                             @csrf
                             <div class="d-flex flex-row align-items-start">
-                                <textarea class="form-control ml-1 shadow-none textarea" name="comment" placeholder="Write a comment"></textarea>
+                                <textarea class="form-control ml-1 shadow-none textarea" name="body" placeholder="Write a comment"></textarea>
                                 <input type="hidden" name="post_id" value="{{ $s->id }}">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                             </div>

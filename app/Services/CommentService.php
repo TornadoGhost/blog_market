@@ -19,4 +19,12 @@ class CommentService implements CommentServiceInterface
     public function getAll(){
         return $this->commentRepository->getAll();
     }
+
+    public function getById($id){
+        return $this->commentRepository->getById($id);
+    }
+
+    public function storePost($request, $type){
+        return $this->commentRepository->storePost($request, $type);
+    }
 }
