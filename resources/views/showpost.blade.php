@@ -9,68 +9,51 @@
             <p>{{ $s->content }}</p>
             <small>{{ $s->created_at }}</small>
     </div>
-@foreach($s->comments as $comment)
-    <div class="container mb-5 mt-5">
 
-        <div class="card">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-center mb-5">
-                        Nested comment section
-                    </h3>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="media">
-                                <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview"
-                                     src="https://i.imgur.com/stD0Q19.jpg"/>
-                                <div class="media-body">
-                                    <div class="row">
-                                        <div class="col-8 d-flex">
-                                            <h5>{{ $comment->user->name }}</h5>
-                                            <span>- 2 hours ago</span>
-                                        </div>
-
-                                        <div class="col-4">
-
-                                            <div class="pull-right reply">
-
-                                                <a href="#"><span><i class="fa fa-reply"></i> reply</span></a>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    {{ $comment->body }}
-
-                                    <div class="media mt-4">
-                                        <a class="pr-3" href="#"><img class="rounded-circle"
-                                                                      alt="Bootstrap Media Another Preview"
-                                                                      src="https://i.imgur.com/xELPaag.jpg"/></a>
-                                        <div class="media-body">
-
-                                            <div class="row">
-                                                <div class="col-12 d-flex">
-                                                    <h5>Simona Disa</h5>
-                                                    <span>- 3 hours ago</span>
-                                                </div>
-
-
-                                            </div>
-
-                                            letters, as opposed to using 'Content here, content here', making it look
-                                            like readable English.
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center mb-5">
+                    Nested comment section
+                </h3>
+            @foreach($s->comments as $comment)
+                <div class="col-md-8 mt-4">
+                    <div class="media g-mb-30 media-comment">
+                        <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="#" alt="Image Description">
+                        <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                            <div class="g-mb-15">
+                                <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ $comment->user->name }}</h5>
+                                <span class="g-color-gray-dark-v4 g-font-size-12">{{ $comment->created_at }}</span>
                             </div>
+
+                            <p>{{ $comment->body }}</p>
+
+                            <ul class="list-inline d-sm-flex my-0">
+                                <li class="list-inline-item g-mr-20">
+                                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                        <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                                        178
+                                    </a>
+                                </li>
+                                <li class="list-inline-item g-mr-20">
+                                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                        <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                                        34
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-auto">
+                                    <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                        <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                                        Reply
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
-@endforeach
     @if(Auth::check())
         <div class="container mt-5">
             <div class="col-md-8">
