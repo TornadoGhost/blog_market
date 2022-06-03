@@ -41,6 +41,15 @@ services:
             MYSQL_PASSWORD: root
             MYSQL_DATABASE: laravel
         ports: ['33033:3306']
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8081:80
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: laravel
+            PMA_PASSWORD: root
     node:
         build:
             context: ./
