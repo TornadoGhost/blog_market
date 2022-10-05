@@ -21,7 +21,7 @@ yarn-install:
 	docker-compose run --rm node yarn install
 
 dbal:
-	docker-compose run --rm composer require doctrine/dbal
+	docker-compose run --rm php-cli composer require doctrine/dbal
 
 migration:
 	docker-compose run --rm php-cli php artisan migrate
