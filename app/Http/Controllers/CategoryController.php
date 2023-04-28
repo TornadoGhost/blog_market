@@ -22,8 +22,7 @@ class CategoryController extends Controller
         $this->underCategoryService = $underCategoryService;
     }
 
-    public function Index();
-    {
+    public function Index() {
         $categories = $this->category->getCategories();
 
         return view('categories.all', compact('categories'));
