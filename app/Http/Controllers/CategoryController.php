@@ -14,7 +14,7 @@ class CategoryController extends Controller
 
     protected $category;
 
-    protected $underCategoryService;
+    protected $UnderCategoryService;
 
     public function __construct(CategoryServiceInterface $category, UnderCategoryServiceInterface $underCategoryService)
     {
@@ -22,7 +22,7 @@ class CategoryController extends Controller
         $this->underCategoryService = $underCategoryService;
     }
 
-    public function index()
+    public function Index();
     {
         $categories = $this->category->getCategories();
 
