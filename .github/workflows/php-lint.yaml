@@ -1,0 +1,51 @@
+﻿name: php-linter
+
+on:
+  push:
+    branches:
+    - master
+    - feature/php-lint
+  pull_request:
+    branches:
+      - master
+      - feature/php-lint
+
+jobs:
+
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Setup PHP runtime
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: "8.1"
+        coverage: "none"
+
+    - uses: actions/checkout@v2
+      name: Checkout code
+
+    - name: Check PHP syntax errors
+      # You may pin to the exact commit or the version.
+      # uses: overtrue/phplint@540dff330004054776a5873b081b170dc32f9e17
+      uses: overtrue/phplint@6.0.0
+
+      # with:
+      #   # path to check
+      #   path: # optional, default is .
+      #   # command options.(eg: --no-cache --exclude=*.log)
+      #   options: # optional, default is
+
+    - name: PHP Syntax Checker (Lint)
+      uses: StephaneBour/actions-php-lint@8.0
+      with:
+        # Folder to check syntax
+        dir: "."
+
+    - name: phpcs
+      if:  ${{ always() }}
+      uses: thelovekesh/phpcs-ci@v1.0.1
+
+    - name: PHP Lint
+      if:  ${{ always() }}
+      uses: michaelw90/PHP-Lint@2.1.0
