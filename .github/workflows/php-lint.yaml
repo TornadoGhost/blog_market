@@ -23,8 +23,12 @@ jobs:
       uses: StephaneBour/actions-php-lint@8.0
       with:
         # Folder to check syntax
-        dir: "./app/"
+        dir: "."
 
-    - name: Lint Code Base
+    - name: phpcs
       if:  ${{ always() }}
       uses: thelovekesh/phpcs-ci@v1.0.1
+
+    - name: PHP Lint
+      if:  ${{ always() }}
+      uses: michaelw90/PHP-Lint@2.1.0
