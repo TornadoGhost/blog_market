@@ -20,3 +20,7 @@ jobs:
       with:
         # Folder to check syntax
         dir: "./app/"
+
+    - name: Lint Code Base
+      if:  ${{ always() }}
+      uses: thelovekesh/phpcs-ci@v1.0.1
