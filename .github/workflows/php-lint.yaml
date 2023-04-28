@@ -1,0 +1,17 @@
+﻿name: php-linter
+
+on:
+  push:
+    branches: master
+
+jobs:
+
+  UnitTests:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: PHP Syntax Checker (Lint)
+      uses: StephaneBour/actions-php-lint@8.1
+      with:
+        # Folder to check syntax
+        dir: "."
