@@ -5,6 +5,10 @@ on:
     branches:
     - master
     - feature/php-lint
+  pull_request:
+    branches:
+      - master
+      - feature/php-lint
 
 jobs:
 
